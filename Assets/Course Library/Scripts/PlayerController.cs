@@ -6,10 +6,13 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody _ballRb;
     public float pushForce;
+    private GameObject focalPoint;
+    
     // Start is called before the first frame update
     void Start()
     {
         _ballRb = GetComponent<Rigidbody>();
+        focalPoint = GameObject.Find("Focal Point");
     }
 
     // Update is called once per frame
@@ -21,6 +24,6 @@ public class PlayerController : MonoBehaviour
     void BallMovement()
     {
         float verticalInput = Input.GetAxis("Vertical");
-        _ballRb.AddForce(Vector3.forward * Time.deltaTime * pushForce * verticalInput, ForceMode.Impulse);
+        _ballRb.AddForce(focalPoint.transform.forward * Time.deltaTime * pushForce * verticalInput, ForceMode.Impulse);
     }
 }
